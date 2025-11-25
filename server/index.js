@@ -20,7 +20,7 @@ const MenuItem = mongoose.model("MenuItem", new mongoose.Schema({
   price: Number,
   availability: Boolean,
   image: String
-}));
+}), "menu_items");
 
 // API route
 app.get("/menu", async (req, res) => {
