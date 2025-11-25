@@ -16,8 +16,8 @@ mongoose.connect(process.env.MONGO_URI)
 // Schema
 const MenuItem = mongoose.model("MenuItem", new mongoose.Schema({
   name: String,
+  description: String,
   price: Number,
-  content: String,
   availability: Boolean,
   image: String
 }));
