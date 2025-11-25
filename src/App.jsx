@@ -1,10 +1,12 @@
- import Home from './Home'
+ import Footer from './footer'
+import Home from './Home'
 
 function App() {
  
   return (
     <>
       <Home/>
+      <Footer/>
     </>
   )
 }
