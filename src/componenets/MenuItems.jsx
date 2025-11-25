@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import me from './../assets/Rectangle 1.png'
  
 function MenuItems() {
   const [items, setItems] = useState([]);
@@ -18,9 +19,9 @@ function MenuItems() {
       {items.map(item => (
         <div key={item._id} className="bg-white shadow-lg rounded-xl overflow-hidden">
           <img
-            src={`./../assets/${item.image_url}`} // use the correct field from DB
+            src={`./assets/${item.image_url}`} // use the correct field from DB
             alt={item.name}
-            className="w-full h-48 object-cover"
+            className="w-full h-30em object-fill"          
           />
           <div className="p-4">
             <h3 className="text-xl font-bold">{item.name}</h3>
