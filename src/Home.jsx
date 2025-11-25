@@ -8,7 +8,8 @@ import Navbar from './componenets/Navbar'
 function Home() {
   return (
   <div >
-    <div><img src={back} className='h-screen absolute z-0 w-screen object-cover' alt="" /></div>
+    <div className='bg-[#eca595] absolute h-screen sm:hidden w-[30.9em]' > </div>
+    <div><img src={back} className='sm:h-screen absolute z-0 w-screen sm:block hidden sm:object-cover  ' alt="" /> </div>
     <Navbar/>
     <div className='z-10 relative ml-14 flex flex-col gap-6 mt-64'>
        <h2 className='text-6xl font-bold text-[86px] text-[#A6374B]'>Cool. <span className='text-[#ce576c]'>Creamy. <br /></span><span className='text-[#F13C2D]'>Craveable.</span></h2>
