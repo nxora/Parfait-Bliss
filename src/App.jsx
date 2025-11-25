@@ -1,12 +1,15 @@
  import Footer from './footer'
 import Home from './Home'
-
+import Seltion from './Seltion'
+ 
 function App() {
  
   return (
     <>
-      <Home/>
-      <Footer/>
+       {/* <Home/> */}
+    <Seltion/>
+      
+      {/*<Footer/> */}
     </>
   )
 }
