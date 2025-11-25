@@ -7,8 +7,9 @@ function App() {
  
   return (
     <>
-       {/* <Home/>  <Seltion/> */}
-    <MenuItems/>
+       <Home/> 
+        <Seltion/>
+    {/* <MenuItems/> */}
       
       {/*<Footer/> */}
     </>

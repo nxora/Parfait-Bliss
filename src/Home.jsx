@@ -8,12 +8,13 @@ import grid1 from './assets/Rectangle 2.png'
 import grid2 from './assets/Rectangle 3.png'
 import grid3 from './assets/Rectangle 4.png'
 import grid4 from './assets/Rectangle 5.png'
+import MenuItems from './componenets/MenuItems'
 // import './index.css'
 
 function Home() {
   return (
   <div >
-    <div className='bg-[#eca595] absolute h-screen sm:hidden w-[28em]' > </div>
+    <div className='bg-[#eca595] absolute h-screen sm:hidden w-[30.9em]' > </div>
     <div><img src={back} className='h-screen absolute z-0 sm:block hidden sm:object-cover sm:w-full w-[30em] ' alt="" /> </div>
     <Navbar/>
     <div className='z-10 relative ml-14 flex flex-col gap-6 mt-64'>
@@ -24,12 +25,12 @@ function Home() {
         <button className='text-[#A6374B] font-semibold text-sm bg-[#E9BEB4] rounded-md px-4 py-2 border-[1px]'>View Menu</button>
       </div>
      </div>
-     <div className="sm:flex z-10 relative justify-center items-start gap-10 p-6 mt-[50em] w-full">
+     <div className="sm:flex z-10 relative justify-center items-start gap-10 p-6 mt-[40em] w-full">
   <div>
     <img 
       src={image} 
       alt="" 
-      className="w-full sm:w-1/2 lg:w-[30em] lg:h-[55em] object-cover rounded-3xl md:hidden 2xl:block" 
+      className="w-full sm:w-1/2 lg:w-[30em] lg:h-[55em] object-cover rounded-3xl md:hidden hidden 2xl:block" 
     />
   </div>
   <div className="w-full sm:w-1/2">
@@ -44,6 +45,12 @@ function Home() {
       <img src={grid4} alt="" className="w-full" />  
     </div>
   </div>
+</div>
+<div className='bg-[#F2D5D1] text-center mt-16'>
+  <h1 className=' h-[96px] opacity-1 text-5xl font-bold pt-[1em] mb-10 '>Parfaits</h1>
+  <h1 className='font-medium text-base  text-slate-600'> Explore our range of handcrafted parfaits designed to delight and suprise.</h1>
+
+<MenuItems/>
 </div>
 
      

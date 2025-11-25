@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <div>
-      <nav className='flex justify-evenly relative z-10 h-20 items-center font-semibold'>
+      <nav className='flex justify-evenly relative z-10 h-20 items-center font-semibold m-auto'>
         
         {/* Logo */}
         <div>
@@ -33,7 +33,7 @@ function Navbar() {
 
         {/* Hamburger Icon (Mobile Only) */}
         <div 
-          className="md:hidden flex flex-col gap-1 cursor-pointer ml-[130px]"
+          className="md:hidden flex flex-col gap-1 cursor-pointer -mr-[140px]"
           onClick={() => setOpen(!open)}
         >
           <div className={`w-6 h-1 bg-black transition-all duration-300 ${open ? 'rotate-45 translate-y-2' : ''}`}></div>
