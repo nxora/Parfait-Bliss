@@ -59,7 +59,7 @@ function Home() {
         <h1 className='text-4xl font-bold mb-12'> What people say</h1>
         <p>Real stories from people who have tasted out parfait and they had a good experience with it </p>
         <div className='flex-col flex sm:flex-row gap-8 justify-center items-center my-24'>
-          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 '>
+          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 p-8'>
             <img src={comma} alt="" />
             <h4 className='my-12'>This parfait was the best I’ve ever had! Fresh fruits, crunchy granola, and creamy yogurt—absolutely perfect. I’ll definitely order again!</h4>
             <div className="grid grid-cols-2 gap-0">
@@ -67,20 +67,20 @@ function Home() {
               <h1>Amina K</h1>
             </div>
           </div>
-          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 '>
+          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 p-8 '>
             <img src={comma} alt="" />
             <h4 className='my-12'>This parfait was the best I’ve ever had! Fresh fruits, crunchy granola, and creamy yogurt—absolutely perfect. I’ll definitely order again!</h4>
             <div className="grid grid-cols-2 gap-0">
-              <img src={pic} alt="" />
-              <h1>Amina K</h1>
+              <img src={pic1} alt="" />
+              <h1>Micheal T</h1>
             </div>
           </div>
-          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 '>
+          <div className='bg-white rounded-xl w-72 md:p-10 lg:w-1/4 p-8'>
             <img src={comma} alt="" />
             <h4 className='my-12'>This parfait was the best I’ve ever had! Fresh fruits, crunchy granola, and creamy yogurt—absolutely perfect. I’ll definitely order again!</h4>
-            <div className="grid grid-cols-2 gap-0">
-              <img src={pic} alt="" />
-              <h1>Amina K</h1>
+            <div className="grid grid-cols-2 gap-0 items-center ">
+              <img src={pic2} alt="" />
+              <h1>Alex Smith</h1>
             </div>
           </div>
         </div>
