@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
   
-function MenuItems() {
+function RelatedProduct() {
   const [items, setItems] = useState([]);
   const [visibleItems, setVisibleItems] = useState([])
 
@@ -20,11 +20,9 @@ function MenuItems() {
   useEffect(() => {
     const handleResize = () => {
         const width = window.innerWidth
-        let limit = 10
+        let limit = 5
         if(width < 640){
             limit = 4
-        } else if (width < 1024) {
-            limit = 6
         }
         setVisibleItems(items.slice(0, limit))
     }
@@ -33,6 +31,10 @@ function MenuItems() {
   }, [items])
 
   return (
+    <div>
+      <h1 className="font-semibold text-3xl ml-[20%]">Related Products</h1>
+      <hr className="w-[90%] m-auto bg-black border-black"/>
+
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 m-14 ">
       {visibleItems.map(item => (
         <div key={item._id} className="text-center overflow-hidden rounded-lg transform transition-transform duration-300 hover:scale-105" onClick={() => navigate(`/menu/${item._id}`)}>
@@ -52,7 +54,8 @@ function MenuItems() {
         </div>
       ))}
     </div>
+    </div>
   );
 }
 
-export default MenuItems;
+export default RelatedProduct;

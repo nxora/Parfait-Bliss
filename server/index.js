@@ -28,4 +28,10 @@ app.get("/menu", async (req, res) => {
   res.json(items);
 });
 
+app.get("/menu/:id", async (req, res) =>{
+  const item = await MenuItem.findById(req.params.id)
+  res.json(item)
+  console.log(res);
+  
+})
 app.listen(5000, () => console.log("Server running on port 5000"));
