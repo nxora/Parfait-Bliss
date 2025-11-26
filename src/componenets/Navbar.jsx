@@ -10,28 +10,19 @@ function Navbar() {
   return (
     <div>
       <nav className='flex justify-evenly relative z-10 h-20 items-center font-semibold m-auto'>
-        
-        {/* Logo */}
-        <div>
-          <img src={Logo} alt="" />
+        <div><img src={Logo} alt="" /></div>
+        <div className='hidden lg:flex gap-8  '>
+           <a href="#" className=' relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>Menu</a>
+          <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>About Us</a>
+          <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>Contact</a>
+       
         </div>
-
-        {/* Desktop Links */}
-        <div className='hidden lg:flex gap-8'>
-          <a href="#">Menu</a>
-          <a href="#">About Us</a>
-          <a href="#">Contact</a>
-        </div>
-
-        {/* Desktop Icons */}
         <div className='md:flex gap-8 items-center hidden'>
           <a href=""><img src={cart} className='w-6' alt="" /></a>
           <a href=""><img src={search} className='w-6' alt="" /></a>
-          <button type="button" className='bg-white px-6 py-2 rounded-lg'>Log In</button>
-          <button type="button" className='bg-[#FF6B6B] px-6 py-2 rounded-lg'>Sign In</button>
+          <button type="button" className='bg-white px-6 py-2 rounded-lg transform transition-transform duration-300 hover:scale-105'>Log In</button>
+          <button type="button" className='bg-[#FF6B6B] px-6 py-2 rounded-lg transform transition-transform duration-300 hover:scale-105'>Sign In</button>
         </div>
-
-        {/* Hamburger Icon (Mobile Only) */}
         <div 
           className="md:hidden flex flex-col gap-1 cursor-pointer -mr-[140px]"
           onClick={() => setOpen(!open)}
@@ -40,10 +31,7 @@ function Navbar() {
           <div className={`w-6 h-1 bg-black transition-all duration-300 ${open ? 'opacity-0' : ''}`}></div>
           <div className={`w-6 h-1 bg-black transition-all duration-300 ${open ? '-rotate-45 -translate-y-2' : ''}`}></div>
         </div>
-
       </nav>
-
-      {/* Mobile Dropdown Menu */}
       {open && (
         <div className="md:hidden flex flex-col items-center gap-6 py-6  shadow-md font-semibold fixed z-20 w-full rounded-md bg-[#E9BEB4]">
           

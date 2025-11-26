@@ -32,11 +32,11 @@ function MenuItems() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 m-14 ">
       {visibleItems.map(item => (
-        <div key={item._id} className="text-center overflow-hidden ">
+        <div key={item._id} className="text-center overflow-hidden rounded-lg transform transition-transform duration-300 hover:scale-105">
           <img
             src={`./assets/${item.image_url}`} // use the correct field from DB
             alt={item.name}
-            className="w-1/2 h-30em object-fill rounded-lg m-auto hover:rounded-lg cursor-pointer tr"          
+            className="w-1/2 h-30em object-fill  m-auto hover:rounded-lg cursor-pointer tr"          
           />
           <div className="p-4">
             <h3 className="text-xl font-bold">{item.name}</h3>
