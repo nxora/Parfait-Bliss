@@ -10,9 +10,8 @@ function RelatedProduct() {
 
   useEffect(() => {
     axios.get("http://localhost:5000/menu")
-      .then(response => {
-        console.log(response.data); // logs your menu items
-        setItems(response.data);    // save data to state
+      .then(response => { 
+        setItems(response.data);    
       })
       .catch(err => console.error("Error fetching menu:", err));
   }, []);
@@ -32,16 +31,16 @@ function RelatedProduct() {
 
   return (
     <div>
-      <h1 className="font-semibold text-3xl ml-[20%]">Related Products</h1>
-      <hr className="w-[90%] m-auto bg-black border-black"/>
+      <h1 className="font-semibold text-3xl ml-[8%]">Related Products</h1>
+      <hr className="w-[85%] m-auto bg-black border-black"/>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 p-6 m-14 ">
       {visibleItems.map(item => (
         <div key={item._id} className="text-center overflow-hidden rounded-lg transform transition-transform duration-300 hover:scale-105" onClick={() => navigate(`/menu/${item._id}`)}>
           <img
-            src={`./assets/${item.image_url}`} // use the correct field from DB
+            src={`./../assets/${item.image_url}`} // use the correct field from DB
             alt={item.name}
-            className="w-1/2 h-30em object-fill  m-auto hover:rounded-lg cursor-pointer tr"          
+            className="w-[80%] h-30em object-fill  m-auto hover:rounded-lg cursor-pointer tr"          
           />
           <div className="p-4">
             <h3 className="text-xl font-bold">{item.name}</h3>
