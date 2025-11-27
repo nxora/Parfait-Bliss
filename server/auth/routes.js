@@ -10,4 +10,9 @@ router.post("/login", login)
 router.get("/profile", authMiddleware, (req, res) => {
     res.json({ message: "Protected route", user: req.user })
 })
+
+// In auth/routes.js
+router.get("/test", (req, res) => {
+  res.json({ ok: true });
+});
 module.exports = router
