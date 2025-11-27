@@ -1,7 +1,7 @@
   import React from 'react'
-import pic from'./assets/Rectangle 9.png'
-import logo from './assets/Logo.png'
-import './index.css'
+import pic from'./../assets/Rectangle 9.png'
+import logo from './../assets/Logo.png'
+import './../index.css'
 
 
 function Footer() {

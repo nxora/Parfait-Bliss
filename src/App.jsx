@@ -1,9 +1,6 @@
  import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import MenuItems from './componenets/MenuItems'
-import Footer from './footer'
-import Home from './Home'
-import Seltion from './Seltion'
-import Item from './Item'
+import Home from './pages/Home'
+import Item from './pages/Item'
 import MenuItems2 from './componenets/RelatedProduct'
  
 function App() {

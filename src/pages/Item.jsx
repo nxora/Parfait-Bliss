@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import RelatedProduct from './componenets/RelatedProduct'
-import Footer from './footer'
-import Navbar from './componenets/Navbar'
+import RelatedProduct from '../componenets/RelatedProduct'
+import Footer from '../componenets/Footer'
+import Navbar from '../componenets/Navbar'
 
 
 function Item() {
