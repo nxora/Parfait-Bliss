@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import Logo from './../assets/Logo.png'
 import cart from './../assets/mdi_cart-outline.png'
 import search from './../assets/mingcute_search-line.png'
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
 
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -40,7 +42,7 @@ function Navbar() {
           <a href="#">Contact</a>
 
           <div className="flex flex-col gap-4 items-center">
-            <button type="button" className='bg-white px-6 py-2 rounded-lg border'>Log In</button>
+            <button type="button" className='bg-white px-6 py-2 rounded-lg border' onClick={() => navigate("/login")}>Log In</button>
             <button type="button" className='bg-[#FF6B6B] px-6 py-2 rounded-lg'>Sign In</button>
           </div>
 
