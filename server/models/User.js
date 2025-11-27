@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,      
+    unique: true,
   },
 
   password: {
@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     default: "user",
-  }
+  },
+
+  verified: { type: Boolean },
+  verificationToken: { String },
+  googleId: { String }
 });
 
 module.exports = mongoose.model("User", userSchema);//mhn think im getting the hang of javascript

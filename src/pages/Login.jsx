@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 
 function Login() {
@@ -12,7 +13,7 @@ function Login() {
             setError("")
         
             try {
-                const res = await axios.post("http://localhost:5000/auth/login",{
+                const res = await axios.post("http://localhost:5000/auth/api/login",{
                     email, password
                 })
                 localStorage.setItem("token", res.data.token)
@@ -27,7 +28,7 @@ function Login() {
          <div className="w-full max-w-md backdrop-blur-md bg-white/20 p-8 rounded-2xl shadow-xl border border-white/30 animate-fadeIn scale-95 animate-scaleIn">
          <h1 className='text-3xl font-bold text-white text-center mb-6 drop-shadow-lg'>Welcome Back</h1>
          {error && (
-            <div className="bg-red-500/80 text-white text-center p-3 rounded-md mb-4">error</div>
+            <div className="bg-red-500/80 text-white text-center p-3 rounded-md mb-4">{error}</div>
          )}
 
          <form onSubmit={handleLogin} className='space-y-4'>
@@ -43,7 +44,6 @@ function Login() {
                           className="w-full p-3 mt-1 rounded-lg bg-white/70 focus:bg-white 
                                      outline-none border border-[#E9BEB4] text-[#A6374B] 
                                      placeholder-[#A6374B]/60"
-                          placeholder="••••••••••"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                         />
