@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./auth/routes")
 require("dotenv").config();
+require("dotenv").config();
+console.log("JWT_SECRET loaded?", !!process.env.JWT_SECRET); // should log `true`
 
 const app = express();
 

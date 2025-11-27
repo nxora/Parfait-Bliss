@@ -19,9 +19,10 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     setMsg("");
+    console.log("Submitting:", form);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", form); 
+      const res = await axios.post("http://localhost:5000/auth/api/register", form); 
 
       setMsg("✔ Account created! You can now log in.");
     } catch (err) {
@@ -48,7 +49,8 @@ export default function Register() {
         <form onSubmit={handleSubmit} className="space-y-5">
 
           <input
-            name="name"
+          name="name"
+            value={form.name}
             type="text"
             placeholder="Full Name"
             onChange={handleChange}
@@ -58,6 +60,7 @@ export default function Register() {
           <input
             name="email"
             type="email"
+            value={form.email}
             placeholder="Email Address"
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-lg border border-[#E9BEB4] focus:ring-2 focus:ring-[#FF6B6B]"
@@ -66,6 +69,7 @@ export default function Register() {
           <input
             name="password"
             type="password"
+            value={form.password}
             placeholder="Password"
             onChange={handleChange}
             className="w-full px-4 py-3 rounded-lg border border-[#E9BEB4] focus:ring-2 focus:ring-[#FF6B6B]"
