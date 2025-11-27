@@ -2,6 +2,8 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto")
+const sentdMail = require("sendMail")
 
 async function register(req, res) {
     try {
@@ -13,9 +15,14 @@ async function register(req, res) {
         if (existing) {
             return res.status(400).json({ message: "Email already registered" });
         }
+
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(password, salt);
-        const user = await User.create({ name, email, password: hashed });
+        const verificationToken = crypto.randomBytes(32).toString("hex")
+
+        const user = await User.create({ name, email, password: hashed, verificationToken, verified: false });
+        const verifyLink = `${process.env.CLIENT_URL}/verify/${verificationToken}`;//what does this do. i dont have a CLIENT_URL in my .env
+        await sendMail(email, "Verify your account", `Click to verify your account: ${verifyLink}`);
 
         const token = jwt.sign(
             { id: user._id },
@@ -27,7 +34,8 @@ async function register(req, res) {
         res.status(201).json({
             message: "User registered",
             token,
-            user: { id: user._id, name: user.name, email: user.email }});
+            user: { id: user._id, name: user.name, email: user.email }
+        });
 
     } catch (err) {
         console.error(err);
@@ -46,6 +54,9 @@ async function login(req, res) {
         const existing = await User.findOne({ email });
         if (!existing) {
             return res.status(400).json({ message: "Email not registered" });
+        }
+        if (!existing.verified) {
+           return res.status(400).json({ message: "Please verify your email first" });    
         }
         const isMatch = await bcrypt.compare(password, existing.password)
         if (!isMatch) {
@@ -76,11 +87,11 @@ async function login(req, res) {
 function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization
 
-    if(!authHeader) {
+    if (!authHeader) {
         return res.status(401).json({ message: "No token provided" })
     }
 
-    const token = authHeader.split(" ")[1];  
+    const token = authHeader.split(" ")[1];
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
@@ -91,4 +102,25 @@ function authMiddleware(req, res, next) {
     }
 }
 
-module.exports = { register, login, authMiddleware};
+async function verifyEmail(req, res) {
+    try {
+        const { token } = req.params;//what does this mean
+
+        const user = await User.findOne({ verificationToken: token });
+        if (!user) {
+            return res.status(400).json({ message: "Invalid verification token" });
+        }
+
+        user.verified = true;
+        user.verificationToken = null;
+        await user.save();
+
+        res.json({ message: "Email verified successfully!" });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server error" });
+    }
+}
+
+module.exports = { register, login, authMiddleware, verifyEmail, };
