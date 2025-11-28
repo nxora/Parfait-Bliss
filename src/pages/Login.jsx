@@ -21,7 +21,7 @@ function Login() {
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
      localStorage.setItem("token", res.data.token)
-     window.location.href = "/menu2"
+     window.location.href = "/"
 
     } catch (err) {
         const errorMsg = err.response?.data?.message || "Login Failed"
@@ -43,7 +43,7 @@ function Login() {
         })
 
         google.accounts.id.renderButton(
-            document.getElementById("google-login-button"), {theme: "outline", size: "large", width: "240"}
+            document.getElementById("google-login-button"), {theme: "outline", size: "large", width: "container"}
         )
     }
   }, [])
@@ -116,7 +116,7 @@ function Login() {
           <span className="text-white/70">or</span>
         </div>
 
-        <div id="google-login-button" className="h-96 "></div>
+        <div id="google-login-button" className=" "></div>
         </form>
 
       </div>
