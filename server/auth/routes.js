@@ -1,12 +1,14 @@
-//auth/routes  canu expalin this code 
+//auth/routes  
 const express = require('express')
 const router = express.Router()
 
-const { register, login, authMiddleware} = require("./auth")
+const { register, login, authMiddleware, verifyEmail, googleAuth} = require("./auth")
 
 router.post("/register", register);
 router.post("/login", login)
-
+router.get("/verify/:token", verifyEmail)
+router.post("/google", googleAuth)
+ 
 router.get("/profile", authMiddleware, (req, res) => {
     res.json({ message: "Protected route", user: req.user })
 })

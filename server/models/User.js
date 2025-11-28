@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
 
   password: {
     type: String,
-    required: true,
+    required: false,
   },
 
   role: {
@@ -22,9 +22,10 @@ const userSchema = new mongoose.Schema({
     default: "user",
   },
 
+  googleId: { type: String, required: false }, 
   verified: { type: Boolean },
-  verificationToken: { String },
-  googleId: { String }
+  verificationToken: { type: String }, 
+  verficationExpires: { type: Date }
 });
 
 module.exports = mongoose.model("User", userSchema);//mhn think im getting the hang of javascript

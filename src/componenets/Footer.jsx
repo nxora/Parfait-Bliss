@@ -6,7 +6,7 @@ import './../index.css'
 
 function Footer() {
   return (
-      <div className="text-center bg-[#E9BEB4] px-4 py-10 w-[30.9em] sm:w-full">
+      <div className="text-center bg-[#E9BEB4] px-4 py-10 w-[33em] sm:w-full">
   <h2 className="font-semibold text-3xl md:text-5xl leading-tight mb-4">
     Ready to taste pure bliss
   </h2>

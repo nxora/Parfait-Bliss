@@ -11,8 +11,8 @@ function MenuItems() {
   useEffect(() => {
     axios.get("http://localhost:5000/menu")
       .then(response => {
-        console.log(response.data); // logs your menu items
-        setItems(response.data);    // save data to state
+        console.log(response.data);  
+        setItems(response.data);   
       })
       .catch(err => console.error("Error fetching menu:", err));
   }, []);
