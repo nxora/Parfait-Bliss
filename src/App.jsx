@@ -2,18 +2,21 @@
 import Home from './pages/Home'
 import Item from './pages/Item'
 import MenuItems2 from './componenets/RelatedProduct'
-import Login from './pages/Login'
 import Register from './pages/Register'
+import Login from './pages/Login'
+import VerifyEmail from './pages/VerifyEmail'
  
 function App() {
  
   return (
    <BrowserRouter>
    <Routes>
-    <Route path='/' element={<Register/>} />
+    <Route path='/' element={<Home/>} />
     <Route path='/menu/:id' element={<Item />} />
     <Route path='/menu2' element={<MenuItems2 />} />
     <Route path='/login' element={<Login />} />
+    <Route path='/register' element={<Register />} />
+    <Route path="/verify/:token" element={<VerifyEmail />} />
    </Routes>
    </BrowserRouter>
   )

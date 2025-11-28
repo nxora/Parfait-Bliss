@@ -3,9 +3,9 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto")
-const sendMail = require("sendMail")
+const sendMail = require("./sendMail")
 const { OAuth2Client } = require("google-auth-library")
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+const client = new OAuth2Client(process.env.CLIENT_ID)
 
 async function register(req, res) {
     try {
@@ -23,7 +23,7 @@ async function register(req, res) {
         const verificationToken = crypto.randomBytes(32).toString("hex")
 
         const user = await User.create({ name, email, password: hashed, verificationToken, verified: false });
-        const verifyLink = `${process.env.CLIENT_URL}/verify/${verificationToken}`;//what does this do. i dont have a CLIENT_URL in my .env
+        const verifyLink = `${process.env.CLIENT_URL}/verify/${verificationToken}`; 
         await sendMail(email, "Verify your account", `Click to verify your account: ${verifyLink}`);
 
         const token = jwt.sign(
@@ -32,7 +32,7 @@ async function register(req, res) {
             { expiresIn: "7d" }
         );
 
-        // 6. return response
+      
         res.status(201).json({
             message: "User registered",
             token,
@@ -106,7 +106,7 @@ function authMiddleware(req, res, next) {
 
 async function verifyEmail(req, res) {
     try {
-        const { token } = req.params;//what does this mean
+        const { token } = req.params; 
 
         const user = await User.findOne({ verificationToken: token });
         if (!user) {
@@ -117,11 +117,13 @@ async function verifyEmail(req, res) {
         user.verificationToken = null;
         await user.save();
 
-        res.json({ message: "Email verified successfully!" });
+        const veritoken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+        res.json({ message: "Email verified successfully!", token: veritoken, user: {id: user._id, name: user.name, email: user.email}  });
 
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error", veritoken });
     }
 }
 
@@ -130,7 +132,7 @@ async function googleAuth(req, res){
         const { credential } = req.body
         const ticket = await client.verifyIdToken({
             idToken: credential,
-            audience: process.env.GOOGLE_CLIENT_ID
+            audience: process.env.CLIENT_ID
         })
 
         const payload = ticket.getPayload()
@@ -143,7 +145,7 @@ async function googleAuth(req, res){
         }
 
          const token = jwt.sign(
-            { id: existing._id },
+            { id: user._id },
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
         );
