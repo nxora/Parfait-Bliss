@@ -20,7 +20,7 @@ function Item() {
 
   if (!item) return <div>Loading ....</div>
   return (
-    <div className='bg-[#FBCEC3] w-[31.9em] sm:w-full'>
+    <div className='bg-[#FBCEC3] w-[33em] sm:w-full'>
       <Navbar/>
 
     <div className=" text-center sm:text-left p-10 justify-center mx-auto flex flex-col sm:flex-row md:gap-24    ">

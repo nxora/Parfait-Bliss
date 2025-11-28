@@ -17,7 +17,7 @@ export default function VerifyEmail() {
 
       } catch (err) {
         alert(" Invalid or expired verification link.");
-        navigate("/login");
+        navigate("/");
       }
     };
     verify();

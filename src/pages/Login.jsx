@@ -25,7 +25,7 @@ function Login() {
 
     } catch (err) {
         const errorMsg = err.response?.data?.message || "Login Failed"
-        if(errorMsg.incudes("verify")){
+        if(errorMsg.includes("verify")){
             setError("Please verfy your email first. Check your inbox");
         } else {
             setError(errorMsg)
@@ -85,7 +85,7 @@ function Login() {
               focus:bg-white outline-none border border-[#E9BEB4]  
               text-[#A6374B]"
               placeholder="example@mail.com"
-              autoComplete="current-password" 
+              autoComplete="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -111,14 +111,15 @@ function Login() {
           >
             {loading ? "Logging In..." : "Login"}
           </button>
-        </form>
-
-      </div>
+          
          <div className="my-6 text-center">
           <span className="text-white/70">or</span>
         </div>
 
-        <div id="google-login-button" className="flex justify-center"></div>
+        <div id="google-login-button" className="h-96 "></div>
+        </form>
+
+      </div>
       </div>
   );
 }
