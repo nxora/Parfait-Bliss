@@ -3,7 +3,9 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto")
-const sentdMail = require("sendMail")
+const sendMail = require("sendMail")
+const { OAuth2Client } = require("google-auth-library")
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 async function register(req, res) {
     try {
@@ -123,4 +125,35 @@ async function verifyEmail(req, res) {
     }
 }
 
-module.exports = { register, login, authMiddleware, verifyEmail, };
+async function googleAuth(req, res){
+    try {
+        const { credential } = req.body
+        const ticket = await client.verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID
+        })
+
+        const payload = ticket.getPayload()
+        const { email, name, sub } = payload
+
+        let user = await User.findOne({ email })
+
+        if (!user){
+            user = await User.create({name, email, googleId: sub, verified: true})
+        }
+
+         const token = jwt.sign(
+            { id: existing._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.json({ message: "Google login successful", token, user: {id:user.id, name: user.name, email: user.email}})
+    } catch (err) {
+       console.error(err);
+       res.status(500).json({ message: "Google Auth failed" })
+        
+    }
+}
+
+module.exports = { register, login, authMiddleware, verifyEmail, googleAuth };
