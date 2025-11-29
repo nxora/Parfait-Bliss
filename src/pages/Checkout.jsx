@@ -14,7 +14,7 @@ function Checkout() {
     if (!token) return navigate("/login?redirect=checkout", {replace: true});
 
     axios
-      .get("http://localhost:5000/auth/api/me", {
+      .get(`{import.meta.env.VITE_API_URL}/auth/api/me`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setUser(res.data))
