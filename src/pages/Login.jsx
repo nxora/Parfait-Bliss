@@ -23,7 +23,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/api/login",
+        `${import.meta.env.VITE_API_URL}/auth/api/login`,
         { email, password }
       );
 
@@ -63,7 +63,7 @@ function Login() {
 
   async function handleGoogleResponse(response) {
     try {
-      const res = await axios.post("http://localhost:5000/auth/api/google", {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/api/google`, {
         credential: response.credential
       })
       const from = location.state?.from || "/";

@@ -9,7 +9,7 @@ function MenuItems() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axios.get("http://localhost:5000/menu")
+    axios.get(`${import.meta.env.VITE_API_URL}/menu`)
       .then(response => {
         console.log(response.data);  
         setItems(response.data);   

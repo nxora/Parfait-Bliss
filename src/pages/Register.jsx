@@ -21,7 +21,7 @@ export default function Register() {
     setMsg("");
 
     try {
-      const res = await axios.post("http://localhost:5000/auth/api/register", form);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/api/register`, form);
     //   localStorage.setItem("token", res.data.token)
       setMsg("✔ Account created! Pls check inbox for verification link.");
     //   window.location.href = "/menu2"

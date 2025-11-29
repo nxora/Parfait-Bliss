@@ -15,7 +15,7 @@ function Item() {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/menu/${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/menu/${id}`)
       .then(res => setItem(res.data))
   }, [id])
 

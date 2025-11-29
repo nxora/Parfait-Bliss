@@ -9,7 +9,7 @@ export default function VerifyEmail() {
   useEffect(() => {
     const verify = async () => {
       try {
-         const res = await axios.get(`http://localhost:5000/auth/api/verify/${token}`);
+         const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/api/verify/${token}`);
 
          localStorage.setItem("token", res.data.token);
          navigate("/"); 
