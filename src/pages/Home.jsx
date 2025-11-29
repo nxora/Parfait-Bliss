@@ -1,19 +1,19 @@
 import React from 'react'
 
 import back from './../assets/image 1.png'
-import Navbar from '../componenets/Navbar'
+import Navbar from '../components/Navbar'
 
 import image from './../assets/Rectangle 1.png'
 import grid1 from './../assets/Rectangle 2.png'
 import grid2 from './../assets/Rectangle 3.png'
 import grid3 from './../assets/Rectangle 4.png'
 import grid4 from './../assets/Rectangle 5.png'
-import MenuItems from '../componenets/MenuItems'
+import MenuItems from '../components/MenuItems'
 import comma from './../assets/“.png'
 import pic from './../assets/Ellipse 1 (2).png'
 import pic1 from './../assets/Ellipse 1 (1).png'
 import pic2 from './../assets/Ellipse 1.png'
-import Footer from '../componenets/footer'
+import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
 
 
