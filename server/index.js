@@ -4,7 +4,7 @@ const cors = require("cors");
 const authRoutes = require("./auth/routes")
 require("dotenv").config();
 require("dotenv").config();
-console.log("JWT_SECRET loaded?", !!process.env.JWT_SECRET); // should log `true`
+console.log("JWT_SECRET loaded?", !!process.env.JWT_SECRET); 
 
 const app = express();
 
@@ -14,12 +14,10 @@ app.use(cors({
 app.use(express.json());
 app.use("/auth/api", authRoutes)
 
-// Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-// Schema
 const MenuItem = mongoose.model("MenuItem", new mongoose.Schema({
   name: String,
   description: String,
@@ -28,7 +26,6 @@ const MenuItem = mongoose.model("MenuItem", new mongoose.Schema({
   image_url: String
 }), "menu-items");
 
-// API route
 app.get("/menu", async (req, res) => {
   const items = await MenuItem.find();
   res.json(items);
