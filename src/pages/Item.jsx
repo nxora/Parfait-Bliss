@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import RelatedProduct from '../componenets/RelatedProduct'
-import Footer from '../componenets/Footer'
+import Footer from '../componenets/footer'
 import Navbar from '../componenets/Navbar'
 
 

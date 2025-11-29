@@ -13,7 +13,7 @@ import comma from './../assets/“.png'
 import pic from './../assets/Ellipse 1 (2).png'
 import pic1 from './../assets/Ellipse 1 (1).png'
 import pic2 from './../assets/Ellipse 1.png'
-import Footer from '../componenets/Footer'
+import Footer from '../componenets/footer'
 import { useNavigate } from 'react-router-dom'
 
 
