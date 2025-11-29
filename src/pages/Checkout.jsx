@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../componenets/Navbar";
-import Footer from "../componenets/Footer";
+import Footer from "../componenets/footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
