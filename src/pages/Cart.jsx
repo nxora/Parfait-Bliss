@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
- import Navbar from '../componenets/Navbar'
-import Footer from '../componenets/footer'
+ import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 function Cart() {
     const [cart, setCart] = useState([])
