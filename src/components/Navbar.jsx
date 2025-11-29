@@ -31,7 +31,7 @@ function Navbar() {
           <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'  onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
         </div>
         <div className='md:flex gap-8 items-center hidden'>
-          <div className="relative"><a href="#" onClick={(e) => { e.preventDefault(); if(!loggedIn) {navigate("/login")}else{navigate("/cart")}  }} className="block"><img src={cart} className='w-6' alt="Cart" />clicking on cart doesnt direct logged in userss to /cart
+          <div className="relative"><a href="#" onClick={(e) => { e.preventDefault(); if(!loggedIn) {navigate("/login")}else{navigate("/cart")}  }} className="block"><img src={cart} className='w-6' alt="Cart" /> 
             {cartCount > 0 && (<span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>)}
           </a>
           </div>
