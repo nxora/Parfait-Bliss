@@ -33,7 +33,6 @@ function Item() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     
-    // 👇 Trigger update in Navbar by forcing a re-render (or use context later)
     window.dispatchEvent(new Event('storage'));
 
     alert(`${quantity} ${item.name}(s) added to cart!`);

@@ -6,6 +6,8 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import VerifyEmail from './pages/VerifyEmail'
 import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import './index.css'
  
 function App() {
  
@@ -19,6 +21,7 @@ function App() {
     <Route path='/register' element={<Register />} />
     <Route path="/verify/:token" element={<VerifyEmail />} />
     <Route path="/cart" element={<Cart/> } />
+    <Route path="/checkout" element={<Checkout/> } />
    </Routes>
    </BrowserRouter>
   )

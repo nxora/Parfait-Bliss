@@ -12,12 +12,11 @@ export default function VerifyEmail() {
          const res = await axios.get(`http://localhost:5000/auth/api/verify/${token}`);
 
          localStorage.setItem("token", res.data.token);
-
-         navigate("/menu2"); // auto-redirect
+         navigate("/"); 
 
       } catch (err) {
         alert(" Invalid or expired verification link.");
-        navigate("/");
+        navigate("/login");
       }
     };
     verify();

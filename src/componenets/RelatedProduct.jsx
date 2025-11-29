@@ -38,7 +38,7 @@ function RelatedProduct() {
       {visibleItems.map(item => (
         <div key={item._id} className="text-center overflow-hidden rounded-lg transform transition-transform duration-300 hover:scale-105" onClick={() => navigate(`/menu/${item._id}`)}>
           <img
-            src={`./../assets/${item.image_url}`} // use the correct field from DB
+            src={`./../assets/${item.image_url}`} 
             alt={item.name}
             className="w-[80%] h-30em object-fill  m-auto hover:rounded-lg cursor-pointer tr"          
           />

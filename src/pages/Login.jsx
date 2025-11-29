@@ -1,11 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const getRedirectPath = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get("redirect") === "checkout" ? "/checkout" : "/";
+  };
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -18,43 +27,48 @@ function Login() {
         { email, password }
       );
 
+      const from = location.state?.from || "/";
+      navigate(from === "/checkout" ? "/checkout" : "/", { replace: true });
+
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
-     localStorage.setItem("token", res.data.token)
-     window.location.href = "/"
+      localStorage.setItem("token", res.data.token)
+      const redirectPath = getRedirectPath();
+      navigate(redirectPath, { replace: true });
 
     } catch (err) {
-        const errorMsg = err.response?.data?.message || "Login Failed"
-        if(errorMsg.includes("verify")){
-            setError("Please verfy your email first. Check your inbox");
-        } else {
-            setError(errorMsg)
-        }
+      const errorMsg = err.response?.data?.message || "Login Failed"
+      if (errorMsg.includes("verify")) {
+        setError("Please verfy your email first. Check your inbox");
+      } else {
+        setError(errorMsg)
+      }
     } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    if (window.google){
-        google.accounts.id.initialize({
-            client_id: import.meta.env.VITE_CLIENT_ID,
-            callback: handleGoogleResponse, ux_mode: 'popup'
-        })
+    if (window.google) {
+      google.accounts.id.initialize({
+        client_id: import.meta.env.VITE_CLIENT_ID,
+        callback: handleGoogleResponse, ux_mode: 'popup'
+      })
 
-        google.accounts.id.renderButton(
-            document.getElementById("google-login-button"), {theme: "outline", size: "large", width: "container"}
-        )
+      google.accounts.id.renderButton(
+        document.getElementById("google-login-button"), { theme: "outline", size: "large", width: "container" }
+      )
     }
   }, [])
 
-  async function handleGoogleResponse(response){
+  async function handleGoogleResponse(response) {
     try {
-        const res = await axios.post("http://localhost:5000/auth/api/google", {
-            credential: response.credential
-        })
-        localStorage.setItem("token", res.data.token)
-        window.location.href = "/menu2"
+      const res = await axios.post("http://localhost:5000/auth/api/google", {
+        credential: response.credential
+      })
+      const from = location.state?.from || "/";
+      localStorage.setItem("token", res.data.token);
+      navigate(from, { replace: true });
     } catch (err) {
       setError("Google login failed. Please try again.");
       console.error(err);
@@ -85,7 +99,7 @@ function Login() {
               focus:bg-white outline-none border border-[#E9BEB4]  
               text-[#A6374B]"
               placeholder="example@mail.com"
-              autoComplete="email" 
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -98,7 +112,7 @@ function Login() {
               className="w-full p-3 mt-1 rounded-lg bg-white/70 focus:bg-white 
               outline-none border border-[#E9BEB4] text-[#A6374B]"
               value={password}
-              autoComplete="current-password" 
+              autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -111,16 +125,16 @@ function Login() {
           >
             {loading ? "Logging In..." : "Login"}
           </button>
-          
-         <div className="my-6 text-center">
-          <span className="text-white/70">or</span>
-        </div>
 
-        <div id="google-login-button" className=" "></div>
+          <div className="my-6 text-center">
+            <span className="text-white/70">or</span>
+          </div>
+
+          <div id="google-login-button" className=" "></div>
         </form>
 
       </div>
-      </div>
+    </div>
   );
 }
 
