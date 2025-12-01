@@ -12,10 +12,10 @@ function Navbar() {
   const navigate = useNavigate()
   const {loggedIn, logout} = useAuth()
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-    setLoggedIn(!!token)
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token")
+  //   setLoggedIn(!!token)
+  // }, [])
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("cart")) || []
