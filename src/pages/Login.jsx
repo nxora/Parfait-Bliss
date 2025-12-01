@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { redirect, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 function Login() {
@@ -65,7 +65,8 @@ function Login() {
   async function handleGoogleResponse(response) {
     try {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/api/google`, {
-        credential: response.credential
+        credential: response.credential,
+        redirect: location.state?.form || "/"
       })
       localStorage.setItem("token", res.data.token)
       loginSuccess(res.data.user)
