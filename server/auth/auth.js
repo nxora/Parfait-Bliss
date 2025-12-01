@@ -128,7 +128,7 @@ async function verifyEmail(req, res) {
 
 async function googleAuth(req, res){
     try {
-        const { credential } = req.body
+        const { credential, redirect } = req.body
         const ticket = await client.verifyIdToken({
             idToken: credential,
             audience: process.env.CLIENT_ID
@@ -149,7 +149,7 @@ async function googleAuth(req, res){
             { expiresIn: "7d" }
         );
 
-        res.json({ message: "Google login successful", token, user: {id:user.id, name: user.name, email: user.email}})
+        res.json({ message: "Google login successful", token, user: {id:user.id, name: user.name, email: user.email}, redirect: redirect || "/"})
     } catch (err) {
        console.error(err);
        res.status(500).json({ message: "Google Auth failed" })
