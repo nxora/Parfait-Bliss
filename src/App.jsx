@@ -8,10 +8,12 @@ import VerifyEmail from './pages/VerifyEmail'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import './index.css'
+import AuthProvider from './AuthContext'
  
 function App() {
  
   return (
+    <AuthProvider>
    <BrowserRouter>
    <Routes>
     <Route path='/' element={<Home/>} />
@@ -24,6 +26,7 @@ function App() {
     <Route path="/checkout" element={<Checkout/> } />
    </Routes>
    </BrowserRouter>
+    </AuthProvider>
   )
 }
 

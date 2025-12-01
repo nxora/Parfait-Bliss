@@ -3,13 +3,14 @@ import Logo from './../assets/Logo.png'
 import cart from './../assets/mdi_cart-outline.png'
 import search from './../assets/mingcute_search-line.png'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 function Navbar() {
 
   const [open, setOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false)
   const [cartCount, setCartCount] = useState(0)
   const navigate = useNavigate()
+  const {loggedIn, logout} = useAuth()
 
   useEffect(() => {
     const token = localStorage.getItem("token")

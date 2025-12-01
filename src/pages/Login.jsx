@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const {loginSuccess} = useAuth()
 
   const getRedirectPath = () => {
     const params = new URLSearchParams(location.search);
@@ -27,14 +29,13 @@ function Login() {
         { email, password }
       );
 
-      const from = location.state?.from || "/";
-      navigate(from === "/checkout" ? "/checkout" : "/", { replace: true });
-
-      localStorage.setItem("token", res.data.token);
-      alert("Login successful");
       localStorage.setItem("token", res.data.token)
-      const redirectPath = getRedirectPath();
+      loginSuccess(res.data.user)
+
+      const from = location.state?.from || "/";
+      const redirectPath = getRedirectPath()
       navigate(redirectPath, { replace: true });
+      alert("Login successful"); 
 
     } catch (err) {
       const errorMsg = err.response?.data?.message || "Login Failed"
@@ -56,7 +57,7 @@ function Login() {
       })
 
       google.accounts.id.renderButton(
-        document.getElementById("google-login-button"), { theme: "outline", size: "large", width: "container" }
+        document.getElementById("google-login-button"), { theme: "outline", size: "large" }
       )
     }
   }, [])
@@ -66,8 +67,9 @@ function Login() {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/api/google`, {
         credential: response.credential
       })
+      localStorage.setItem("token", res.data.token)
+      loginSuccess(res.data.user)
       const from = location.state?.from || "/";
-      localStorage.setItem("token", res.data.token);
       navigate(from, { replace: true });
     } catch (err) {
       setError("Google login failed. Please try again.");
