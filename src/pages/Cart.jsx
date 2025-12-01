@@ -9,7 +9,7 @@ function Cart() {
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem("cart")) || []
         setCart(saved)
-    })
+    },[])
 
     const updateQuantity = (id, delta) => {
         setCart(prev => prev.map(item => item._id === id ? {...item, quantity:Math.max(1, item.quantity + delta)} : item))
