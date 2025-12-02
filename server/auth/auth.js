@@ -25,18 +25,8 @@ async function register(req, res) {
         const verifyLink = `${process.env.CLIENT_URL}/verify/${verificationToken}`; 
         await sendMail(email, "Verify your account", `Click to verify your account: ${verifyLink}`);
 
-        const token = jwt.sign(
-            { id: user._id },
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-        );
-
-      
-        res.status(201).json({
-            message: "User registered",
-            token,
-            user: { id: user._id, name: user.name, email: user.email }
-        });
+            
+        return res.status(201).json({ message: "User registered. Pls check your email to verify your account" });
 
     } catch (err) {
         console.error(err);
