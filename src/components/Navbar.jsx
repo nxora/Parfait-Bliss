@@ -12,10 +12,22 @@ function Navbar() {
   const navigate = useNavigate()
   const {loggedIn, logout} = useAuth()
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token")
-  //   setLoggedIn(!!token)
-  // }, [])
+const scrollToSection = (sectionId) => {
+    if(window.location.pathname === '/'){
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'})
+      }
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({behavior: 'smooth'})
+        }
+      }, 100)
+    }
+  }
 
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("cart")) || []
@@ -27,9 +39,9 @@ function Navbar() {
       <nav className=' flex justify-evenly relative z-10 h-20 items-center font-semibold m-auto'>
         <div><img src={Logo} alt="" /></div>
         <div className='hidden lg:flex gap-8  '>
-          <a href="#menu" className=' relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>Menu</a>
-          <a href="#about" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>About Us</a>
-          <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'  onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
+          <a className=' relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => scrollToSection('menu')}>Menu</a>
+          <a className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => scrollToSection('menu')}>About Us</a>
+          <a className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'  onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
         </div>
         <div className='md:flex gap-8 items-center hidden'>
           <div className="relative"><a href="#" onClick={(e) => { e.preventDefault();  {navigate("/cart")}  }} className="block"><img src={cart} className='w-6' alt="Cart" /> 
@@ -58,8 +70,8 @@ function Navbar() {
       {open && (
         <div className="md:hidden flex flex-col items-center gap-6 py-6  shadow-md font-semibold fixed z-20 w-full rounded-md bg-[#E9BEB4]">
 
-          <a href="#menu">Menu</a>
-          <a href="#about">About Us</a>
+          <a onClick={() => scrollToSection('menu')}>Menu</a>
+          <a onClick={() => scrollToSection('about')}>About Us</a>
           <a href="#" onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
 
           {!loggedIn && (

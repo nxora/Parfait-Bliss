@@ -41,12 +41,12 @@ function Item() {
 
   if (!item) return <div>Loading ....</div>
   return (
-    <div className='bg-[#FBCEC3] w-[33em] sm:w-full'>
+    <div className='bg-[#FBCEC3] w-full sm:w-full'>
       <Navbar/>
 
     <div className=" text-center sm:text-left p-10 justify-center mx-auto flex flex-col sm:flex-row md:gap-24    ">
       <div>
-        <img src={`/assets/${item.image_url}`} className="w-full h-full lg:w-[30em] lg:h-[40em] rounded-2xl object-cover" />
+        <img src={`/assets/${item.image_url}`} className="w-full h-full lg:w-full lg:h-[40em] rounded-2xl object-cover" />
       </div>
       <div>
         <h1 className="text-3xl font-bold mt-6 ">{item.name}</h1>
