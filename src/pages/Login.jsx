@@ -121,13 +121,9 @@ function Login() {
           </div>
 
           <button
-            disabled={loading}
-            className="w-full p-3 rounded-lg bg-[#A6374B] hover:bg-[#8e2f40] 
-            text-white font-semibold mt-4 transition-all active:scale-95 
-            shadow-lg"
-          >
-            {loading ? "Logging In..." : "Login"}
-          </button>
+            disabled={loading} className="w-full p-3 rounded-lg bg-[#A6374B] hover:bg-[#8e2f40] text-white font-semibold mt-4 transition-all active:scale-95 
+            shadow-lg">{loading ? "Logging In..." : "Login"}</button>
+            <p className='text-white text-center font-semibold'>Dont have an account? <a className='text-[#c0576a]' href="/register">Register</a></p>
 
           <div className="my-6 text-center">
             <span className="text-white/70">or</span>

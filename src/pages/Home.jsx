@@ -21,11 +21,11 @@ function Home() {
   const navigate = useNavigate()
   return (
     <div >
-      <div className='bg-[#eca595] absolute h-[70em] sm:hidden sm:w-full w-[33em]' />
-      <div><img src={back} className='h-screen absolute z-0 sm:block hidden sm:object-cover sm:w-full w-[30em] ' alt="" /> </div>
+      <div className='bg-[#eca595] absolute h-[70em] sm:hidden sm:w-full w-screen ' />
+      <div><img src={back} className='h-screen absolute z-0 sm:block hidden sm:object-cover sm:w-full w-full ' alt="" /> </div>
       <Navbar />
       <div className='z-10 relative ml-14 flex flex-col gap-6 mt-64'>
-        <h2 className='text-5xl font-bold text-[86px] text-[#A6374B] sm:text-6xl'>Cool. <span className='text-[#ce576c]'>Creamy. <br /></span><span className='text-[#F13C2D]'>Craveable.</span></h2>
+        <h2 className='text-5xl font-bold   text-[#A6374B] sm:text-6xl'>Cool. <span className='text-[#ce576c]'>Creamy. <br /></span><span className='text-[#F13C2D]'>Craveable.</span></h2>
         <h5 className='font-medium text-[18px]'>Fresh Layers, fruity flavors, unforgettable taste</h5>
         <div className="flex gap-8">
           <button className='text-[#fff] font-semibold text-sm bg-[#FF6B6B] rounded-md px-4 py-2 border-[1px] relative transition-all duration-300 after:content-[""] after:absolute after:inset-0 after:border after:border-[#FFF8E7] after:rounded-md after:scale-0 after:transition-transform after:duration-300 hover:after:scale-100' onClick={() => window.location.href = "#menu"}>Order Now</button>
@@ -33,11 +33,11 @@ function Home() {
         </div>
       </div>
       the upper div and lower are over-lapping
-      <div className="sm:flex z-10 relative justify-center items-center gap-10 p-6 w-full mt-[24em] md:mt-[40em] ">
+      <div className="sm:flex z-10 relative items-center gap-10 p-6 mx-auto bg-black mt-[24em] md:mt-[40em] ">
         <div>
-          <img src={image} alt="" className="w-full sm:w-1/2 lg:w-[30em] lg:h-[55em] object-cover rounded-3xl md:hidden hidden 2xl:block" />
+          <img src={image} alt="" className="w-full sm:w-1/2 lg:w-full lg:h-[55em] object-cover rounded-3xl md:hidden hidden 2xl:block" />
         </div>
-        <div className="w-full sm:w-1/2 text-center ml-[4em]" id='about'>
+        <div className="w-full sm:w-1/2 text-center " id='about'>
           <h1 className="text-4xl  lg:text-5xl font-bold text-center">The Heart of Parfait</h1>
           <p className="mt-4 text-gray-700 md:text-lg lg:mt-12">
             At Parfait Bliss, we believe happiness comes in layers just like our parfaits. Our journey began with a simple passion: to create fresh, wholesome, and delicious treats that bring joy to every spoonful.
@@ -50,7 +50,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className='bg-[#F2D5D1] text-center mt-16 sm:w-full w-[33em]' id='menu'>
+      <div className='bg-[#F2D5D1] text-center mt-16 sm:w-full w-full' id='menu'>
         <h1 className=' h-[96px] opacity-1 text-5xl font-bold pt-[1em] mb-10  '>Parfaits</h1>
         <h1 className='font-medium sm:text-base text-slate-600 '> Explore our range of handcrafted parfaits designed to <br /> delight and suprise.</h1>
         <MenuItems />
@@ -58,7 +58,7 @@ function Home() {
       </div>
 
 
-      <div className="text-center bg-[#FFF8E7] py-24 sm:w-auto w-[33em]">
+      <div className="text-center bg-[#FFF8E7] py-24 sm:w-auto w-full">
         <h1 className='text-4xl font-bold mb-12'> What people say</h1>
         <p>Real stories from people who have tasted out parfait and they had a good experience with it </p>
         <div className='flex-col flex sm:flex-row gap-8 justify-center items-center my-24'>

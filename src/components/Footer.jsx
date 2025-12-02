@@ -2,11 +2,31 @@
 import pic from'./../assets/Rectangle 9.png'
 import logo from './../assets/Logo.png'
 import './../index.css'
+import { useNavigate } from 'react-router-dom'
 
 
 function Footer() {
+
+  const navigate = useNavigate()
+
+  const scrollToSection = (sectionId) => {
+    if(window.location.pathname === '/'){
+      const element = document.getElementById(sectionId)
+      if (element) {
+        element.scrollIntoView({behavior: 'smooth'})
+      }
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({behavior: 'smooth'})
+        }
+      }, 100)
+    }
+  }
   return (
-      <div className="text-center bg-[#E9BEB4] px-4 py-10 w-[33em] sm:w-full">
+      <div className="text-center bg-[#E9BEB4] px-4 py-10 w-full sm:w-full mx-auto">
   <h2 className="font-semibold text-3xl md:text-5xl leading-tight mb-4">
     Ready to taste pure bliss
   </h2>
@@ -16,8 +36,8 @@ function Footer() {
   </p>
 
   <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
-    <button className="text-white font-semibold text-sm bg-[#FF6B6B] rounded-md px-6 py-2 transform transition-transform duration-300 hover:scale-105" onClick={() => window.location.href = "#menu"}>Order Now</button>
-    <button className="text-[#A6374B] font-semibold text-sm bg-[#f5c9bf] rounded-md px-6 py-2 transform transition-transform duration-300 hover:scale-105" onClick={() => window.location.href = "#menu"}>View Menu</button>
+    <button className="text-white font-semibold text-sm bg-[#FF6B6B] rounded-md px-6 py-2 transform transition-transform duration-300 hover:scale-105" onClick={() => scrollToSection('menu')}>Order Now</button>
+    <button className="text-[#A6374B] font-semibold text-sm bg-[#f5c9bf] rounded-md px-6 py-2 transform transition-transform duration-300 hover:scale-105" onClick={() => scrollToSection('menu')}>View Menu</button>
   </div>
   <img src={pic} alt="" className="object-cover mx-auto my-10 w-full max-w-screen-xl " />
 
@@ -28,10 +48,10 @@ function Footer() {
       <img src={logo} alt="" className="w-48 mx-auto lg:mx-0" />
 
       <div className="flex justify-center lg:justify-start gap-10 mt-10 font-semibold flex-wrap">
-           <a href="#menu" className=' relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>Menu</a>
-          <a href="#about" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100'>About Us</a>
-          <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => navigate("/menu")}>Order</a>
-          <a href="#" className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
+          <a className=' relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => scrollToSection('menu')}>Menu</a>
+          <a className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => scrollToSection('about')}>About Us</a>
+          <a className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => scrollToSection('menu')}>Order</a>
+          <a className='relative inline-block after:content-[" "] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:bg-black after:scale-x-0 after:origin-left after:transition after:duration-300 hover:after:scale-x-100' onClick={() => alert("Our number is +234 *** *** whatsap only")}>Contact</a>
       </div>
     </div>
 
@@ -40,9 +60,7 @@ function Footer() {
 
       <div className="flex flex-col sm:flex-row items-center gap-6 mt-6">
         <h3>Get parfaits updates</h3>
-        <button type="button" className="bg-[#FF6B6B] px-6 py-2 rounded-lg text-white transform transition-transform duration-300 hover:scale-105">
-          Sign In
-        </button>
+        <button type="button" className="bg-[#FF6B6B] px-6 py-2 rounded-lg text-white transform transition-transform duration-300 hover:scale-105" onClick={() => navigate("/register")}> Sign In</button>
       </div>
 
       <h3 className="mt-6 text-sm opacity-80">
