@@ -1,5 +1,5 @@
  import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, replace } from "react-router-dom";
 import axios from "axios";
 
 export default function VerifyEmail() {
@@ -12,7 +12,10 @@ export default function VerifyEmail() {
          const res = await axios.get(`${import.meta.env.VITE_API_URL}/auth/api/verify/${token}`);
 
          localStorage.setItem("token", res.data.token);
-         navigate("/"); 
+
+         setTimeout(() => {
+           navigate("/", {replace: true});
+         }, 300)
 
       } catch (err) {
         alert(" Invalid or expired verification link.");

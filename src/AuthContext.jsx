@@ -2,35 +2,51 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 
 const AuthContext = createContext()
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
-   const [loggedIn, setLoggedIn] = useState(false)
-   const [user, setUser] = useState(null)
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+        setUser(null);
+      }
+    };
 
-   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-        setLoggedIn(true)
-    }
-   },[])
+    checkAuth();
 
-   const loginSuccess = (userData) => {
-    setUser(userData)
-    setLoggedIn(true)
-   }
+    window.addEventListener('storage', checkAuth);
+    
+    const timer = setTimeout(checkAuth, 1000);
 
-   const logout = () => {
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  const loginSuccess = (userData) => {
+    setLoggedIn(true);
+    setUser(userData);
+  };
+
+  const logout = () => {
     localStorage.removeItem("token");
     setLoggedIn(false);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{loggedIn, user, loginSuccess, logout}}>
-        {children}
+    <AuthContext.Provider value={{ loggedIn, user, loginSuccess, logout }}>
+      {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
+
 
 export const useAuth =  () => {
     const context = useContext(AuthContext)
