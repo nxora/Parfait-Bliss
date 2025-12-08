@@ -71,7 +71,7 @@ A beautifully designed full-stack MERN e-commerce application where users can br
 ### **1. Clone the repository**
 
 ```bash
-git clone https://github.com/yourname/parfait-bliss.git
+git clone https://github.com/dave-ai/parfait-bliss.git
 cd parfait-bliss
 ```
 
